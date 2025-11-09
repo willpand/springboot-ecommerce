@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     container_name: postgres-spring-boot
@@ -5,17 +7,34 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: ecommerce
       PGDATA: /data/postgres
     volumes:
       - db:/data/postgres
     ports:
       - "5332:5432"
     networks:
-      - db
+      - app-network
     restart: unless-stopped
 
+  app:
+    build: .
+    container_name: springboot-ecommerce
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - app-network
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/ecommerce
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
+      SPRING_JPA_SHOW_SQL: "true"
+
 networks:
-  db:
+  app-network:
     driver: bridge
 
 volumes:

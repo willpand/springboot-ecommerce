@@ -13,10 +13,4 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-    // Rest end-point
-    @GetMapping
-    public String helloWorld(){
-        return "Hello World Spring Boot";
-    }
-
 }
