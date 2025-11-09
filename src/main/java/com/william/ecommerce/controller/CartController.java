@@ -1,5 +1,6 @@
 package com.william.ecommerce.controller;
 
+import com.william.ecommerce.dto.CartResponse;
 import com.william.ecommerce.entity.Cart;
 import com.william.ecommerce.entity.User;
 import com.william.ecommerce.service.CartService;
@@ -19,14 +20,16 @@ public class CartController {
     }
 
     @PostMapping("/add")
-    public Cart addToCart(@RequestParam Long productId, @RequestParam int quantity) {
+    public CartResponse addToCart(@RequestParam Long productId, @RequestParam int quantity) {
         User user = userService.getCurrentUser();
-        return cartService.addToCart(user, productId, quantity);
+        Cart cart = cartService.addToCart(user, productId, quantity);
+        return cartService.mapToResponse(cart);
     }
 
     @GetMapping
-    public Cart getCart() {
+    public CartResponse getCart() {
         User user = userService.getCurrentUser();
-        return cartService.getOrCreateCart(user);
+        Cart cart = cartService.getOrCreateCart(user);
+        return cartService.mapToResponse(cart);
     }
 }

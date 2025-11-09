@@ -2,6 +2,7 @@ package com.william.ecommerce.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,15 +16,15 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private LocalDateTime orderDate;
+    private LocalDateTime createdAt;
     private Double total;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderItem> orderItems;
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     // Constructors
     public Order() {
-        this.orderDate = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     // Getters and Setters
@@ -45,12 +46,12 @@ public class Order {
         this.user = user;
     }
 
-    public LocalDateTime getOrderDate() {
-        return orderDate;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
     public void setOrderDate(LocalDateTime orderDate) {
-        this.orderDate = orderDate;
+        this.createdAt = orderDate;
     }
 
     public Double getTotal() {
@@ -61,11 +62,11 @@ public class Order {
         this.total = total;
     }
 
-    public List<OrderItem> getOrderItems() {
+    public List<OrderItem> getItems() {
         return orderItems;
     }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
+    public void setItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
 }

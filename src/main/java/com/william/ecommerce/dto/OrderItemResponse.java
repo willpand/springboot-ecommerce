@@ -1,13 +1,13 @@
 package com.william.ecommerce.dto;
 
-public class CartItemResponse {
+public class OrderItemResponse {
     private Long id;
     private Long productId;
     private String productName;
     private Double productPrice;
     private Integer quantity;
 
-    public CartItemResponse(Long id, Long productId, String productName, Double productPrice, Integer quantity) {
+    public OrderItemResponse(Long id, Long productId, String productName, Double productPrice, Integer quantity) {
         this.id = id;
         this.productId = productId;
         this.productName = productName;
@@ -55,4 +55,3 @@ public class CartItemResponse {
         this.quantity = quantity;
     }
 }
-

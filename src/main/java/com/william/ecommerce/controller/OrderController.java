@@ -1,5 +1,6 @@
 package com.william.ecommerce.controller;
 
+import com.william.ecommerce.dto.OrderResponse;
 import com.william.ecommerce.entity.Order;
 import com.william.ecommerce.entity.User;
 import com.william.ecommerce.service.OrderService;
@@ -21,14 +22,17 @@ public class OrderController {
     }
 
     @PostMapping("/place")
-    public Order placeOrder() {
+    public OrderResponse placeOrder() {
         User user = userService.getCurrentUser();
-        return orderService.placeOrder(user);
+        Order order = orderService.placeOrder(user);
+        return orderService.mapToResponse(order);
     }
 
     @GetMapping
-    public List<Order> getOrders() {
+    public List<OrderResponse> getOrders() {
         User user = userService.getCurrentUser();
-        return orderService.getUserOrders(user);
+        return orderService.getUserOrders(user).stream()
+                .map(orderService::mapToResponse)
+                .toList();
     }
 }

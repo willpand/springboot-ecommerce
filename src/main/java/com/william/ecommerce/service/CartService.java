@@ -1,10 +1,13 @@
 package com.william.ecommerce.service;
 
+import com.william.ecommerce.dto.CartItemResponse;
+import com.william.ecommerce.dto.CartResponse;
 import com.william.ecommerce.entity.*;
 import com.william.ecommerce.repository.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,6 +61,20 @@ public class CartService {
         cart.setTotal(total);
         cart.setUpdatedAt(java.time.LocalDateTime.now());
         return cartRepository.save(cart);
+    }
+
+    public CartResponse mapToResponse(Cart cart) {
+        List<CartItemResponse> items = cart.getItems().stream()
+                .map(item -> new CartItemResponse(
+                        item.getId(),
+                        item.getProduct().getId(),
+                        item.getProduct().getName(),
+                        item.getProduct().getPrice(),
+                        item.getQuantity()
+                ))
+                .toList();
+
+        return new CartResponse(cart.getId(), cart.getTotal(), items);
     }
 
     @Transactional
