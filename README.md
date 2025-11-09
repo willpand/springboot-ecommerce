@@ -1,10 +1,10 @@
-# Spring Boot E-Commerce Backend
+# 🛒 Spring Boot E-Commerce Backend
 
-A **Spring Boot e-commerce backend** featuring JWT authentication, a product catalog, shopping cart, order management, and user roles. The application uses **PostgreSQL** as the database and is fully **Dockerized** for easy setup.
+A **Sp ring Boot e-commerce backend** featuring JWT authentication, a product catalog, shopping cart, order management, and user roles. The application uses **PostgreSQL** as the database and is fully **Dockerized** for easy setup.
 
 ---
 
-## Features
+## 🚀 Features
 
 - User authentication & authorization with JWT  
 - User roles: Admin & Customer  
@@ -17,14 +17,14 @@ A **Spring Boot e-commerce backend** featuring JWT authentication, a product cat
 
 ---
 
-## Database Schema
+## 🗂 Database Schema
 
 Here is the **database schema** showing all entities and relationships (users, products, cart, orders, etc.).  
 
 ![Database Schema](docs/db-schema.png)
 ---
 
-## Running the Project
+## 🐳 Running the Project
 
 Requirements:
 - Docker & Docker Compose installed
@@ -43,7 +43,7 @@ docker-compose up --build
 
 ---
 
-## API Testing (Postman)
+## 📦 API Testing (Postman)
 
 You can import the **Postman collection** from:  
 [Postman Collection Download Link](./postman-collection.json)  
